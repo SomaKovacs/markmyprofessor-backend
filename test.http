@@ -1,0 +1,56 @@
+// REQUIRED VS CODE EXTENSION: https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+
+// VARIABLES
+// =============================================================================
+@baseUrl = https://sheesh.tech
+@baseUrl = http://127.0.0.1:8000
+@userToken = 13|A3GuU4oQZ5xxGrjTvJ88mD6GdaaW30C0Nzn2o4Ke
+### ============================================================================
+
+
+
+// PUBLIC ROUTES
+// =============================================================================
+GET {{baseUrl}}/api/ping HTTP/1.1
+Accept: application/json
+###
+
+
+POST {{baseUrl}}/api/register HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "first_name": "Patrik",
+    "last_name": "Gálea",
+    "email": "patrick@test22.com",
+    "password": "secret"
+}
+###
+
+POST {{baseUrl}}/api/login HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "patrick@test.com",
+    "password": "secret"
+}
+###
+
+
+
+// PROTECTED ROUTES
+// =============================================================================
+POST {{baseUrl}}/api/logout HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{userToken}}
+###
+
+GET {{baseUrl}}/api/test_token HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{userToken}}
+###
